@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
+</head>
+<body>
+<section>
+    <div class='air air1'></div>
+    <div class='air air2'></div>
+    <div class='air air3'></div>
+    <div class='air air4'></div>
+</section>
+<div class="sidebar">
+    <h3>Menu</h3>
+    <a th:href="@{/submitPreference}" role="button" class="btn btn-outline-success">Submit Preferences</a>
+    <a th:href="@{/myPreferences}" role="button" class="btn btn-outline-success">My Preferences</a>
+    <a th:href="@{/result}" role="button" class="btn btn-outline-success">Result</a>
+    <a th:href="@{/perform_logout}" role="button" class="btn btn-outline-success">Logout</a>
+    <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+        <a th:href="@{/admin/menu}" role="button" class="btn btn-outline-success">Admin Menu</a>
+        <a th:href="@{/database}" role="button" target="_blank" class="btn btn-outline-success">Database</a>
+    </div>
+    <div class="profile" th:if="${studentName}">
+        <img class="profile-img" src="https://www.gravatar.com/avatar?d=mp&s=48" alt="Avatar"/>
+        <div class="profile-info">
+            <div th:text="${studentName}"></div>
+            <div th:text="${studentSurname}"></div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success"></div>
+    <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger"></div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Submit Your Preferences</h2>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/submitPreference}" th:object="${preferenceFormDTO}" method="post">
+                        <div th:each="destination, iterStat : ${destinations}" class="form-group">
+                            <input type="hidden" th:field="*{preferences[__${iterStat.index}__].destinationId}" th:value="${destination.id}" />
+                            <label th:text="${destination.name}">Destination Name</label>
+                            <select th:field="*{preferences[__${iterStat.index}__].ranking}" class="form-control ranking-select" id="ranking-select-[[${iterStat.index}]]">
+                                <option value="">Select Preference</option>
+                                <option value="1">1st preference (Very High Priority)</option>
+                                <option value="2">2nd preference (High Priority)</option>
+                                <option value="3">3rd preference (Middle Priority)</option>
+                                <option value="4">4th preference (Low Priority)</option>
+                            </select>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">Submit Preferences</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const selects = document.querySelectorAll('.ranking-select');
+
+        function updateOptions() {
+            const selectedValues = Array.from(selects).map(select => select.value);
+
+            selects.forEach(select => {
+                const currentValue = select.value;
+                select.querySelectorAll('option').forEach(option => {
+                    if (option.value !== "" && option.value !== currentValue) {
+                        option.disabled = selectedValues.includes(option.value);
+                    } else {
+                        option.disabled = false;
+                    }
+                });
+            });
+        }
+
+        selects.forEach(select => {
+            select.addEventListener('change', updateOptions);
+        });
+
+        updateOptions();
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

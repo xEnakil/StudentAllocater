@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
+</head>
+<body>
+<section>
+    <div class='air air1'></div>
+    <div class='air air2'></div>
+    <div class='air air3'></div>
+    <div class='air air4'></div>
+</section>
+<div class="sidebar">
+    <h3>Menu</h3>
+    <a th:href="@{/submitPreference}" role="button" class="btn btn-outline-success">Submit Preferences</a>
+    <a th:href="@{/myPreferences}" role="button" class="btn btn-outline-success">My Preferences</a>
+    <a th:href="@{/result}" role="button" class="btn btn-outline-success">Result</a>
+    <a th:href="@{/perform_logout}" role="button" class="btn btn-outline-success">Logout</a>
+    <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+        <a th:href="@{/admin/menu}" role="button" class="btn btn-outline-success">Admin Menu</a>
+        <a th:href="@{/database}" role="button" target="_blank" class="btn btn-outline-success">Database</a>
+    </div>
+    <div class="profile" th:if="${studentName}">
+        <img class="profile-img" src="https://www.gravatar.com/avatar?d=mp&s=48" alt="Avatar"/>
+        <div class="profile-info">
+            <div th:text="${studentName}"></div>
+            <div th:text="${studentSurname}"></div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Allocation Result
+                    </div>
+                    <div class="card-body">
+                        <h5 th:if="${allocation}" class="card-title">Congratulations!</h5>
+                        <p class="card-text" th:unless="${allocation}">No allocation found. Please check back later.</p>
+                        <a th:if="${allocation}" href="#" class="btn btn-lg btn-warning" data-toggle="modal" data-target="#myModal">Get the Result of Allocation!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="card-congratulations">
+            <div class="text-right cross"> <i class="fa fa-times"></i> </div>
+            <div class="card-congratulations-body text-center"> <img src="https://img.icons8.com/bubbles/200/000000/trophy.png">
+                <h4>CONGRATULATIONS!</h4>
+                <p>You have been allocated for the given location to study further! Wish you everything best in your path to study abroad!</p>
+                <p th:if="${allocation}" th:text="'Destination: ' + ${allocation.allocatedDestination}"></p>
+                <p th:if="${allocation}" th:text="'Rank: ' + ${allocation.rank}"></p>
+                <button class="btn btn-out btn-square continue">CONTINUE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

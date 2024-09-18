@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Preferences</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
+</head>
+<body>
+<section>
+    <div class='air air1'></div>
+    <div class='air air2'></div>
+    <div class='air air3'></div>
+    <div class='air air4'></div>
+</section>
+<div class="sidebar">
+    <h3>Menu</h3>
+    <a th:href="@{/submitPreference}" role="button" class="btn btn-outline-success">Submit Preferences</a>
+    <a th:href="@{/myPreferences}" role="button" class="btn btn-outline-success">My Preferences</a>
+    <a th:href="@{/result}" role="button" class="btn btn-outline-success">Result</a>
+    <a th:href="@{/perform_logout}" role="button" class="btn btn-outline-success">Logout</a>
+    <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+        <a th:href="@{/admin/menu}" role="button" class="btn btn-outline-success">Admin Menu</a>
+        <a th:href="@{/database}" role="button" target="_blank" class="btn btn-outline-success">Database</a>
+    </div>
+    <div class="profile" th:if="${studentName}">
+        <img class="profile-img" src="https://www.gravatar.com/avatar?d=mp&s=48" alt="Avatar"/>
+        <div class="profile-info">
+            <div th:text="${studentName}"></div>
+            <div th:text="${studentSurname}"></div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div th:if="${successMessage}" th:text="${successMessage}" class="alert alert-success"></div>
+    <div th:if="${errorMessage}" th:text="${errorMessage}" class="alert alert-danger"></div>
+
+    <h2>All Students</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Preferred Destination</th>
+                <th>Preference Rank</th>
+                <th>Allocated Destination</th>
+                <th>Allocated Rank</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="allStudents : ${allStudents}">
+                <td th:text="${allStudents.studentName}">Student's Name</td>
+                <td th:text="${allStudents.studentSurname}">Student's Surname</td>
+                <td th:text="${allStudents.preferredDestinationName} ?: 'Not set'">Student's Preferred Destination</td>
+                <td th:text="${allStudents.preferenceRank} ?: 'Not set'">Student's Preference Rank</td>
+                <td th:text="${allStudents.allocatedDestinationName} ?: 'Pending'">Student's Allocated Destination</td>
+                <td th:text="${allStudents.allocatedRank} ?: 'Pending'">Student's Allocated Destination's Rank</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <table>
+        <thead>
+
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

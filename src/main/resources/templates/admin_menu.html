@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="../static/css/index.css" th:href="@{/css/index.css}" rel="stylesheet">
+</head>
+<body>
+<section>
+    <div class='air air1'></div>
+    <div class='air air2'></div>
+    <div class='air air3'></div>
+    <div class='air air4'></div>
+</section>
+<div class="sidebar">
+    <h3>Menu</h3>
+    <a th:href="@{/submitPreference}" role="button" class="btn btn-outline-success">Submit Preferences</a>
+    <a th:href="@{/myPreferences}" role="button" class="btn btn-outline-success">My Preferences</a>
+    <a th:href="@{/result}" role="button" class="btn btn-outline-success">Result</a>
+    <a th:href="@{/perform_logout}" role="button" class="btn btn-outline-success">Logout</a>
+    <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+        <a th:href="@{/admin/menu}" role="button" class="btn btn-outline-success">Admin Menu</a>
+        <a th:href="@{/database}" role="button" target="_blank" class="btn btn-outline-success">Database</a>
+    </div>
+
+    <div class="profile" th:if="${studentName}">
+        <img class="profile-img" src="https://www.gravatar.com/avatar?d=mp&s=48" alt="Avatar"/>
+        <div class="profile-info">
+            <div th:text="${studentName}"></div>
+            <div th:text="${studentSurname}"></div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div th:if="${message}" class="alert" th:classappend="${#strings.startsWith(message, 'Allocation process failed') ? 'alert-danger' : 'alert-success'}" th:text="${message}"></div>
+
+    <div class="card text-center">
+        <div class="card-header">
+            Featured
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Starter for Allocation Process</h5>
+            <p class="card-text">This functionality will trigger the allocation process which uses Genetic Algorithm for assigning the students for different destinations considering the preference to maximize student satisfaction!</p>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#startAllocationModal">
+                Start
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Generating 10 students</h5>
+                    <p class="card-text">This functionality adds 10 Students in the database with random generated emails, names and surnames. However, it does not include and preferences for universities.</p>
+                    <a th:href="@{/admin/add-10-students}" role="button" class="btn btn-primary">Add 10 Students</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Generating 10 students with ordered preferences</h5>
+                    <p class="card-text">This functionality adds 10 Students in the database and also includes the preference with order of Universities, starting the highest being "Harborview Academy of Arts" and lowest priority for "Summit Global Institute".</p>
+                    <a th:href="@{/admin/add-10-students-with-ordered-preference}" role="button" class="btn btn-primary">Add 10 Students(Ordered Preference)</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Generating 39 students with ordered preferences</h5>
+                    <p class="card-text">This functionality adds 39 Students (Max Amount) in the database and also includes the preference with order of Universities, starting the highest being "Harborview Academy of Arts" and lowest priority for "Summit Global Institute".</p>
+                    <a th:href="@{/admin/add-39-students-with-ordered-preference}" role="button" class="btn btn-primary">Add 39 Students(Ordered Preference)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="card mt-n3">
+                <div class="card-body">
+                    <h5 class="card-title">All Students</h5>
+                    <p class="card-text">This functionality encourages us to test Genetic Algorithm. It shows the students name, surname, also includes preferred top location with highest rank(priority) and allocated location with priority to show satisfaction level of student.</p>
+                    <a th:href="@{/admin/get-students}" role="button" class="btn btn-primary">View Students</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 mb-3 mb-sm-0">
+            <div class="card mt-n3">
+                <div class="card-body">
+                    <h5 class="card-title">Generating 39 students with random preferences</h5>
+                    <p class="card-text">This functionality generates 39 students that has random preferences for different universities, that can be viewed through View Students.</p>
+                    <a th:href="@{/admin/add-39-students-with-random-preference}" role="button" class="btn btn-primary">Add 39 Students(Random Preference)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="startAllocationModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Start Allocation Process</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <strong>Are you sure you want to start the allocation process?</strong> <br>
+                (The process can be done once per each runtime, so make sure the students already gave preference for universities)
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <a th:href="@{/admin/start-allocation}" role="button" class="btn btn-primary">Yes</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
