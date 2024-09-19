@@ -27,9 +27,9 @@ public class StudentDropperApplication {
 				Student student = new Student();
 				student.setAge(23);
 				student.setPassword(encodedPassword);
-				student.setName("Aysel");
-				student.setSurname("Bayramzada");
-				student.setEmail("sad@mail.ru");
+				student.setName("Elmin");
+				student.setSurname("Mugalov");
+				student.setEmail("elmin@gmail.com");
 				student.setRole("ROLE_ADMIN");
 				student.setPreferences(null);
 				student.setId(null);
