@@ -1,6 +1,12 @@
-# **StudentDropper**
+# **Efficant Student Allocator**
 
-An advanced student allocation system leveraging a genetic algorithm to optimally assign students to their preferred destinations.
+An advanced student allocation system leveraging a genetic algorithm to optimally assign students to their preferred destinations. 
+
+Admin Credentials: 
+
+    E-mail: elmin@gmail.com 
+
+    Password: 1234
 
   ![Admin Menu](docs/SCREEN_ANIMATION.gif)
 
@@ -12,6 +18,7 @@ An advanced student allocation system leveraging a genetic algorithm to optimall
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Architecture Overview](#architecture-overview)
+- [Database Structure](#database-structure)
 - [Setup and Installation](#setup-and-installation)
 - [Usage](#usage)
   - [User Registration and Login](#user-registration-and-login)
@@ -22,7 +29,7 @@ An advanced student allocation system leveraging a genetic algorithm to optimall
   - [Code Breakdown](#code-breakdown)
   - [Genetic Algorithm Explained](#genetic-algorithm-explained)
   - [Data Models](#data-models)
-  - [Security Configuration](#security-configuration)
+- [Security Configuration](#security-configuration)
 - [Screenshots](#screenshots)
 - [Contact Information](#contact-information)
 - [Conclusion](#conclusion)
@@ -943,7 +950,7 @@ Below are screenshots of the application showcasing various functionalities. All
    
    ![Registration Page](docs/REGISTER_SCREEN.png)
 
-3. **Main Menu**
+3. **Simple Student Menu/ Without Admin Menu on sidebar due to RBAC(Role Based Access)**
    
    ![Main Menu](docs/STUDENT_MENU.png)
 
@@ -962,6 +969,46 @@ Below are screenshots of the application showcasing various functionalities. All
 7. **Allocation Results**
    
    ![Allocation Results](docs/CONGRATULATION_SCREEN.png)
+
+8. **All Studen View (Only Admin)**
+   
+   ![All Studen View](docs/ALL_STUDENT_VIEW.png)
+
+9. **Admin Main Menu Screen**
+   
+   ![Admin Menu Screen](docs/MENU_DEFAULT.png)
+
+10. **Allocation Dialog**
+    
+    ![Allocation Dialog](docs/ALLOCATION_DIALOG.png)
+
+11. **Allocation Failed Screen**
+    
+    ![Allocation Failed Screen](docs/ALLOCATION_SCREEN_FAILED.png)
+
+12. **H2 InApp Memory Database Interface**
+    
+    ![H2 Interface](docs/H2_DATABASE_STRUCTURE.png)
+
+13. **Limit Student Screen Failure**
+    
+    ![Limit Student 40](docs/LIMIT_STUDENT.png)
+
+14. **No Allocation**
+    
+    ![No Allocation](docs/NO_ALLOCATION.png)
+
+15. **Student Generated Succesfully Dialog**
+    
+    ![Student Generated!](docs/STUDENT_GENERATED_DIALOG.png)
+
+16. **Submit Screen Failed Dialog**
+    
+    ![Submit Screen Failed](docs/SUBMIT_SCREEN_FAILED_DIALOG.png)
+
+17. **Submit Screen Succesfully Dialog**
+    
+    ![Submit Screen Passed](docs/SUBMIT_SCREEN_SUCCESS_DIALOG.png)
 
 ---
 

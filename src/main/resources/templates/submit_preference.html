@@ -64,32 +64,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () {
-        const selects = document.querySelectorAll('.ranking-select');
-
-        function updateOptions() {
-            const selectedValues = Array.from(selects).map(select => select.value);
-
-            selects.forEach(select => {
-                const currentValue = select.value;
-                select.querySelectorAll('option').forEach(option => {
-                    if (option.value !== "" && option.value !== currentValue) {
-                        option.disabled = selectedValues.includes(option.value);
-                    } else {
-                        option.disabled = false;
-                    }
-                });
-            });
-        }
-
-        selects.forEach(select => {
-            select.addEventListener('change', updateOptions);
-        });
-
-        updateOptions();
-    });
-</script>
+<script th:src="@{/js/unique_list_script.js}"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
