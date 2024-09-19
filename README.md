@@ -935,31 +935,31 @@ Below are screenshots of the application showcasing various functionalities. All
 
 1. **Login Page**
    
-   ![Login Page](C:\Users\xEnakil\Desktop\New%20folder\StudentAllocater\docs\LOGIN_SCREEN.png)
+   ![Login Page](docs/LOGIN_SCREEN.png)
 
 2. **Registration Page**
    
-   ![Registration Page](C:\Users\xEnakil\Desktop\New%20folder\StudentAllocater\docs\REGISTER_SCREEN.png)
+   ![Registration Page](docs/REGISTER_SCREEN.png)
 
 3. **Main Menu**
    
-   ![Main Menu](C:\Users\xEnakil\Desktop\New%20folder\StudentAllocater\docs\STUDENT_MENU.png)
+   ![Main Menu](docs/STUDENT_MENU.png)
 
 4. **Preference Submission**
    
-   ![Submit Preferences](C:\Users\xEnakil\Desktop\New%20folder\StudentAllocater\docs\SUBMIT_SCREEN.png)
+   ![Submit Preferences](docs/SUBMIT_SCREEN.png)
 
 5. **View Preferences**
    
-   ![My Preferences](C:\Users\xEnakil\Desktop\New%20folder\StudentAllocater\docs\MY_PREFERENCE.png)
+   ![My Preferences](docs/MY_PREFERENCE.png)
 
 6. **Admin Menu**
    
-   ![Admin Menu](docs/admin_menu.png)
+   ![Admin Menu](docs/ADMIN_MENU.png)
 
 7. **Allocation Results**
    
-   ![Allocation Results](C:\Users\xEnakil\Desktop\New%20folder\StudentAllocater\docs\CONGRATULATION_SCREEN.png)
+   ![Allocation Results](docs/CONGRATULATION_SCREEN.png)
 
 ---
 
