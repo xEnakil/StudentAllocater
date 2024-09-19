@@ -2,7 +2,7 @@
 
 An advanced student allocation system leveraging a genetic algorithm to optimally assign students to their preferred destinations.
 
-  ![Admin Menu](docs/SCREENANIMATION.gif)
+  ![Admin Menu]([docs/SCREENANIMATION.gif](https://github.com/xEnakil/StudentAllocater/blob/main/docs/SCREEN%20ANIMATION.gif))
 
 ---
 
