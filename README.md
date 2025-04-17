@@ -1,4 +1,4 @@
-# **Efficant Student Allocator**
+# **Efficiant Student Allocator**
 
 An advanced student allocation system leveraging a genetic algorithm to optimally assign students to their preferred destinations. 
 
